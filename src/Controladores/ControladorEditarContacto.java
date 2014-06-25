@@ -26,13 +26,15 @@ public class ControladorEditarContacto implements ActionListener{
     private String telefono;
     private String direccion;
     private int id;
+    private ControladorVentana ven;
     
-    public ControladorEditarContacto(String name,String apellido,String telefono,String direccion,int id) throws SQLException {
+    public ControladorEditarContacto(String name,String apellido,String telefono,String direccion,int id,ControladorVentana ventana) throws SQLException {
         this.name=name;
         this.apellido=apellido;
         this.telefono=telefono;
         this.direccion=direccion;
         this.id=id;
+        ven = ventana;
         interfaz = new interfazEditarContacto(); // creo la instanacia de la ventana
         //cargo la interfaz con los datos del contacto seleccionado
         interfaz.getNombre().setText(name);
@@ -58,6 +60,7 @@ public class ControladorEditarContacto implements ActionListener{
                     //llamo a la funcion que edita un contacto
                     PersistenciaContacto.editarContacto(name,apellido,telefono,direccion,id);
                     JOptionPane.showMessageDialog(null, "Felicitaciones se actualizo el contacto correctamente");
+                    ven.actualizarLista();
                     interfaz.setVisible(false);
                 }else{
                     JOptionPane.showMessageDialog(null, "Error: No se pudo actualizar el contacto asegurese que no haya campos vacios");

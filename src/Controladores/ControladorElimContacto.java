@@ -26,10 +26,12 @@ public class ControladorElimContacto implements ActionListener{
     private interfazElimContacto interfaz;
     private String name;
     private String apellido;
+    private ControladorVentana ven;
     
-    public ControladorElimContacto(String name,String apellido) throws SQLException {
+    public ControladorElimContacto(String name,String apellido, ControladorVentana ventana) throws SQLException {
         this.name=name;
         this.apellido=apellido;
+        ven = ventana;
         //genero la conexion a la base de datos
         interfaz = new interfazElimContacto(); // creo la instanacia de la ventana
         interfaz.setActionLisntener(this); // le digo que los botones de la ventana interfaz(los botones dentro del metodo)
@@ -48,6 +50,7 @@ public class ControladorElimContacto implements ActionListener{
                 //llamo al metodo que elimina un contacto
                 PersistenciaContacto.eliminarContacto(id);
                 JOptionPane.showMessageDialog(null, "Felicitaciones se elimino el contacto correctamente");
+                ven.actualizarLista();
                 interfaz.setVisible(false);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorElimContacto.class.getName()).log(Level.SEVERE, null, ex);
