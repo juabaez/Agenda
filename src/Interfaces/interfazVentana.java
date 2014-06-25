@@ -124,7 +124,7 @@ public class interfazVentana extends javax.swing.JFrame {
 
         editContacto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/EditarContacto.png"))); // NOI18N
 
-        elimContacto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/EditarContacto.png"))); // NOI18N
+        elimContacto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/EliminarContacto.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
