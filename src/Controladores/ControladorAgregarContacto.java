@@ -23,9 +23,11 @@ import static Persistencias.PersistenciaContacto.InsertarContacto;
 public class ControladorAgregarContacto implements ActionListener{
     private interfazAgregarContacto interfaz;
     private String user;
+    private ControladorVentana ven;
     
-    public ControladorAgregarContacto(String userCorriente) throws SQLException {
+    public ControladorAgregarContacto(String userCorriente, ControladorVentana ventana) throws SQLException {
         this.user = userCorriente;
+        ven = ventana;
         //genero la conexion a la base de datos
         interfaz = new interfazAgregarContacto(); // creo la instanacia de la ventana
         interfaz.setActionLisntener(this); // le digo que los botones de la ventana interfaz(los botones dentro del metodo)
@@ -42,10 +44,15 @@ public class ControladorAgregarContacto implements ActionListener{
                 if (!PersistenciaContacto.ExisteContacto(this.interfaz.getNombre().getText(),this.interfaz.getApellido().getText())){
                     //si el usuario no existe lo agrego a la base de datos
                     if(!this.interfaz.getNombre().getText().isEmpty() && !this.interfaz.getApellido().getText().isEmpty()){
-                        PersistenciaContacto.InsertarContacto(this.interfaz.getNombre().getText(),this.interfaz.getApellido().getText(),this.interfaz.getTelefono().getText(),this.interfaz.getDireccion().getText(),user);
-                        JOptionPane.showMessageDialog(null, "Felicitaciones se guardo el contacto correctamente");
+                        if(ven.fueListado){
+                            PersistenciaContacto.InsertarContacto(this.interfaz.getNombre().getText(),this.interfaz.getApellido().getText(),this.interfaz.getTelefono().getText(),this.interfaz.getDireccion().getText(),user);
+                            JOptionPane.showMessageDialog(null, "Felicitaciones se guardo el contacto correctamente");
+                            ven.actualizarLista();
+                        }else{
+                            PersistenciaContacto.InsertarContacto(this.interfaz.getNombre().getText(),this.interfaz.getApellido().getText(),this.interfaz.getTelefono().getText(),this.interfaz.getDireccion().getText(),user);
+                            JOptionPane.showMessageDialog(null, "Felicitaciones se guardo el contacto correctamente");
+                        }
                         interfaz.setVisible(false);
-                        
                     }else{
                         JOptionPane.showMessageDialog(null, "Error: No puede registrar vacio");
                     }

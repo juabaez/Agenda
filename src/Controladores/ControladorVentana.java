@@ -33,8 +33,8 @@ public class ControladorVentana implements ActionListener{
     private interfazVentana interfazVen;
     private interfazEditarContacto interfazCon;
     private interfazLogin interfazLogin;
-//    private final Connection conexion;
     private String user;
+    public boolean fueListado = false;
     
     public ControladorVentana(String user) throws SQLException {
         this.user = user;
@@ -70,6 +70,7 @@ public class ControladorVentana implements ActionListener{
                     dt.addRow(new Object[]{per.getNombre(),per.getApellido(),per.getTelefono(),per.getDireccion(),new JRadioButton()});
                     users.remove();
                 }
+                fueListado = true;
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -79,7 +80,7 @@ public class ControladorVentana implements ActionListener{
         if (ae.getSource()==interfazVen.getAgregarContacto()) {
             try {
                 //llamo al controlador que se encarga de agregar un contacto
-                new ControladorAgregarContacto(user);
+                new ControladorAgregarContacto(user,this);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
             }
