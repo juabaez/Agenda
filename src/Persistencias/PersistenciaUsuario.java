@@ -6,9 +6,8 @@
 
 package Persistencias;
 
-import static Persistencias.PersistenciaContacto.base;
-import static Persistencias.PersistenciaContacto.pass;
-import static Persistencias.PersistenciaContacto.user;
+import static Persistencias.ConexionDB.Disconnect;
+import static Persistencias.ConexionDB.GetConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -27,7 +26,7 @@ public class PersistenciaUsuario {
     
     //me fijo en la base de datos si el usuario que quiero registrar existe o no
     public static Boolean ExisteUsuario(String nombre) throws SQLException{
-        con = DriverManager.getConnection ("jdbc:mysql://localhost/"+base,user,pass);
+        con = GetConnection();
         boolean existe = false;
         // llamo a la base de datos y preparo la consulta y capturo la excepcion
         Statement s = con.createStatement();
@@ -42,13 +41,13 @@ public class PersistenciaUsuario {
             }
         }
         s.close();
-        con.close();
+        Disconnect(con);
         return existe;
     }
     
     //me fijo si el usuario y la pass ingresadas son correctos
     public static Boolean UsuarioCorrecto(String nombre,String contrasenia) throws SQLException{
-        con = DriverManager.getConnection ("jdbc:mysql://localhost/"+base,user,pass);
+        con = GetConnection();
         boolean existe = false;
         // llamo a la base de datos y preparo la consulta y capturo la excepcion
         Statement s = con.createStatement();
@@ -64,18 +63,18 @@ public class PersistenciaUsuario {
             }
         }
         s.close();
-        con.close();
+        Disconnect(con);
         return existe;
     }
     
     //registro un nuevo usuario en la base de datos
     public static void InsertarUsuario (String usuario,String contrasenia,String nombre,String apellido,String email) throws SQLException{
         // llamo a la base de datos y preparo la consulta y capturo la excepcion
-        con = DriverManager.getConnection ("jdbc:mysql://localhost/"+base,user,pass);
+        con = GetConnection();
         Statement s = con.createStatement();
         s.executeUpdate("INSERT INTO user (usuario,pass,nombre,apellido,email) VALUES ('"+usuario+"','"+contrasenia+"','"+nombre+"','"+apellido+"','"+email+"')");
-        con.close();
         s.close();
+        Disconnect(con);
     }
 
 }
