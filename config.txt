@@ -1,0 +1,6 @@
+base de datos:
+agenda
+usuario:
+root
+contrasenia:
+root

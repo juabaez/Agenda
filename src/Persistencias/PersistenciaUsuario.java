@@ -8,6 +8,7 @@ package Persistencias;
 
 import static Persistencias.ConexionDB.Disconnect;
 import static Persistencias.ConexionDB.GetConnection;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,12 +21,9 @@ import java.util.LinkedList;
  */
 public class PersistenciaUsuario {
     private static Connection con;
-    //private static String base="prueba";
-    //private static String user="root";
-    //private static String pass="root";
     
     //me fijo en la base de datos si el usuario que quiero registrar existe o no
-    public static Boolean ExisteUsuario(String nombre) throws SQLException{
+    public static Boolean ExisteUsuario(String nombre) throws SQLException, IOException{
         con = GetConnection();
         boolean existe = false;
         // llamo a la base de datos y preparo la consulta y capturo la excepcion
@@ -46,7 +44,7 @@ public class PersistenciaUsuario {
     }
     
     //me fijo si el usuario y la pass ingresadas son correctos
-    public static Boolean UsuarioCorrecto(String nombre,String contrasenia) throws SQLException{
+    public static Boolean UsuarioCorrecto(String nombre,String contrasenia) throws SQLException, IOException{
         con = GetConnection();
         boolean existe = false;
         // llamo a la base de datos y preparo la consulta y capturo la excepcion
@@ -68,7 +66,7 @@ public class PersistenciaUsuario {
     }
     
     //registro un nuevo usuario en la base de datos
-    public static void InsertarUsuario (String usuario,String contrasenia,String nombre,String apellido,String email) throws SQLException{
+    public static void InsertarUsuario (String usuario,String contrasenia,String nombre,String apellido,String email) throws SQLException, IOException{
         // llamo a la base de datos y preparo la consulta y capturo la excepcion
         con = GetConnection();
         Statement s = con.createStatement();

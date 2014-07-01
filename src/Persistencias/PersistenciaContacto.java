@@ -8,6 +8,7 @@ package Persistencias;
 import Agenda.Contacto;
 import static Persistencias.ConexionDB.Disconnect;
 import static Persistencias.ConexionDB.GetConnection;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ public class PersistenciaContacto {
     private static Connection con;
     
     //me fijo en la base de datos si existe el contacto que quiero agregar
-    public static Boolean ExisteContacto(String nombre,String ape) throws SQLException{
+    public static Boolean ExisteContacto(String nombre,String ape) throws SQLException, IOException{
         con = GetConnection();
         boolean existe = false;
         // llamo a la base de datos y preparo la consulta y capturo la excepcion
@@ -44,7 +45,7 @@ public class PersistenciaContacto {
     }
     
     //inserto el contracto en la base de datos para un usuario dado
-    public static void InsertarContacto (String nombre,String ape,String tel,String dir,String usuario) throws SQLException{
+    public static void InsertarContacto (String nombre,String ape,String tel,String dir,String usuario) throws SQLException, IOException{
         // llamo a la base de datos y preparo la consulta y capturo la excepcion
         con = GetConnection();
         Statement s = con.createStatement();
@@ -54,7 +55,7 @@ public class PersistenciaContacto {
     }
     
     //devuelvo una lista de todos los contactos de un usuario 
-    public static LinkedList contacto(String name) throws SQLException{
+    public static LinkedList contacto(String name) throws SQLException, IOException{
         con = GetConnection();
         LinkedList<Contacto> user = new LinkedList();
         // llamo a la base de datos y preparo la consulta y capturo la excepcion
@@ -78,7 +79,7 @@ public class PersistenciaContacto {
     }
     
     //devuelvo el id de un contacto 
-    public static int idContacto(String name,String apellido) throws SQLException{
+    public static int idContacto(String name,String apellido) throws SQLException, IOException{
         con = GetConnection();
         int id=-1;
         Statement s = con.createStatement();
@@ -91,7 +92,7 @@ public class PersistenciaContacto {
     }
     
     //edito un contacto con los parametros pasados
-    public static void editarContacto(String name,String apellido,String telefono,String direccion,int id) throws SQLException{
+    public static void editarContacto(String name,String apellido,String telefono,String direccion,int id) throws SQLException, IOException{
         con = GetConnection();
         Statement s = con.createStatement();
         int rs = s.executeUpdate("UPDATE contacto set nombre='"+name+"' where idcontacto="+id);
@@ -103,7 +104,7 @@ public class PersistenciaContacto {
     }
     
     //elimino un contacto dado un id
-    public static void eliminarContacto(int id) throws SQLException{
+    public static void eliminarContacto(int id) throws SQLException, IOException{
         con = GetConnection();
         Statement s = con.createStatement();
         int rs = s.executeUpdate("delete from contacto where idcontacto='"+id+"'");
