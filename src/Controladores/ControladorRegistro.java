@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import Persistencias.PersistenciaUsuario;
 import Agenda.personas;
+import java.io.IOException;
 /**
  *
  * @author Juan
@@ -61,6 +62,8 @@ public class ControladorRegistro implements ActionListener{
                 }                
             }catch (SQLException ex){
                 Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorRegistro.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

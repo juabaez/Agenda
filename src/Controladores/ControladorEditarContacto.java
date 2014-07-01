@@ -11,6 +11,7 @@ import static Persistencias.PersistenciaContacto.ExisteContacto;
 import static Persistencias.PersistenciaContacto.editarContacto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,6 +68,8 @@ public class ControladorEditarContacto implements ActionListener{
                 }              
             }catch (SQLException ex){
                 Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorEditarContacto.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

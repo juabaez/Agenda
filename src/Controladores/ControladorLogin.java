@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import Persistencias.PersistenciaUsuario;
 import static Persistencias.PersistenciaUsuario.UsuarioCorrecto;
+import java.io.IOException;
 
 
 
@@ -57,6 +58,8 @@ public class ControladorLogin implements ActionListener {
                     }
             } catch (SQLException ex) {
                     Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

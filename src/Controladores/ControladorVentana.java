@@ -24,6 +24,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import Agenda.Contacto;
+import java.io.IOException;
 /**
  *
  * @author Juan
@@ -73,6 +74,8 @@ public class ControladorVentana implements ActionListener{
                 fueListado = true;
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -100,6 +103,8 @@ public class ControladorVentana implements ActionListener{
                     new ControladorEditarContacto((String)dt.getValueAt(fila, 0),(String)dt.getValueAt(fila, 1),(String)dt.getValueAt(fila, 2),(String)dt.getValueAt(fila, 3),id,this);
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -118,11 +123,13 @@ public class ControladorVentana implements ActionListener{
                     new ControladorElimContacto((String)dt.getValueAt(fila, 0),(String)dt.getValueAt(fila, 1),this);
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
-    public void actualizarLista(){
+    public void actualizarLista() throws IOException{
         try {
             LinkedList<Contacto> users = contacto(user);
             DefaultTableModel dt = interfazVen.getTabla();

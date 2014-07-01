@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import Persistencias.PersistenciaContacto;
 import static Persistencias.PersistenciaContacto.ExisteContacto;
 import static Persistencias.PersistenciaContacto.InsertarContacto;
+import java.io.IOException;
 /**
  *
  * @author Juan
@@ -61,6 +62,8 @@ public class ControladorAgregarContacto implements ActionListener{
                 }                
             }catch (SQLException ex){
                 Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorAgregarContacto.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
