@@ -6,6 +6,7 @@
 
 package Controladores;
 
+import Agenda.Contacto;
 import Interfaces.interfazEditarContacto;
 import Interfaces.interfazLogin;
 import Interfaces.interfazVentana;
@@ -13,18 +14,19 @@ import static Persistencias.PersistenciaContacto.contacto;
 import static Persistencias.PersistenciaContacto.idContacto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import Agenda.Contacto;
-import java.io.IOException;
 /**
  *
  * @author Juan
@@ -128,6 +130,10 @@ public class ControladorVentana implements ActionListener{
                 }
             }
         }
+        //Selecciono el Archivo VCF
+        if (ae.getSource()==interfazVen.getjButtonSeleccionArchivo()) {
+            
+        }
     }
     public void actualizarLista() throws IOException{
         try {
@@ -145,4 +151,30 @@ public class ControladorVentana implements ActionListener{
             Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    // Este metodo me da como eleccion de un directorio o un directorio con el archivo elegido
+    public void seleccionArchivo(boolean bool){
+        //Crear un objeto FileChooser
+        JFileChooser fc = new JFileChooser();
+        fc.setApproveButtonText("Abrir");
+        //Mostrar la ventana para abrir archivo y recoger la respuesta
+        //En el parámetro del showOpenDialog se indica la ventana
+        //  al que estará asociado. Con el valor this se asocia a la
+        //  ventana que la abre.
+        int respuesta = fc.showOpenDialog(this.interfazVen);
+        //Comprobar si se ha pulsado Aceptar
+        if (respuesta == JFileChooser.APPROVE_OPTION){
+            //Crear un objeto File con el archivo elegido
+            File archivoElegido = fc.getSelectedFile();
+            //Mostrar el nombre del archvivo en un campo de texto
+            String direccion = archivoElegido.getPath().replace(archivoElegido.getName(), "");
+            String archivo = archivoElegido.getName();
+            System.out.println("Dir "+direccion);
+            System.out.println("Dir "+archivo);
+            interfazVen.getjTextFieldArchivoVCF().setText(direccion+archivo);
+        }
+    }    
+    //--------------------------------------------------------------------------
+    
+    
 }
