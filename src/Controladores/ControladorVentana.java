@@ -131,8 +131,8 @@ public class ControladorVentana implements ActionListener{
             }
         }
         //Selecciono el Archivo VCF
-        if (ae.getSource()==interfazVen.getjButtonSeleccionArchivo()) {
-            
+        if (ae.getSource()==interfazVen.getSeleccionArchivo()) {
+            seleccionArchivo();
         }
     }
     public void actualizarLista() throws IOException{
@@ -153,7 +153,7 @@ public class ControladorVentana implements ActionListener{
     }
     
     // Este metodo me da como eleccion de un directorio o un directorio con el archivo elegido
-    public void seleccionArchivo(boolean bool){
+    public void seleccionArchivo(){
         //Crear un objeto FileChooser
         JFileChooser fc = new JFileChooser();
         fc.setApproveButtonText("Abrir");
@@ -171,7 +171,11 @@ public class ControladorVentana implements ActionListener{
             String archivo = archivoElegido.getName();
             System.out.println("Dir "+direccion);
             System.out.println("Dir "+archivo);
-            interfazVen.getjTextFieldArchivoVCF().setText(direccion+archivo);
+            if (!archivo.contains(".vcf")||!archivo.contains(".VCF")) {
+                JOptionPane.showMessageDialog(null, "Extencion invalida (.VCF)", "Error ", JOptionPane.ERROR_MESSAGE);
+            }else{
+                interfazVen.getjTextFieldArchivoVCF().setText(direccion+archivo);
+            }   
         }
     }    
     //--------------------------------------------------------------------------

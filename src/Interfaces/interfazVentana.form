@@ -196,9 +196,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jTextFieldArchivoVCF" pref="294" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButtonSeleccionArchivo" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="SeleccionArchivo" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jButtonCargarContactos" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="CargarContactos" min="-2" pref="147" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -208,7 +208,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonSeleccionArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="SeleccionArchivo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldArchivoVCF" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -216,7 +216,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jButtonCargarContactos" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="CargarContactos" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -228,16 +228,13 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldArchivoVCF">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ingrese Archivo "/>
-          </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonSeleccionArchivo">
+        <Component class="javax.swing.JButton" name="SeleccionArchivo">
           <Properties>
             <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonCargarContactos">
+        <Component class="javax.swing.JButton" name="CargarContactos">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/CargarContacto.png"/>

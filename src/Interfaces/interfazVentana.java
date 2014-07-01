@@ -47,8 +47,8 @@ public class interfazVentana extends javax.swing.JFrame {
         this.agregarContacto.addActionListener(list);
         this.editContacto.addActionListener(list);
         this.elimContacto.addActionListener(list);
-        this.getjButtonCargarContactos().addActionListener(list);
-        this.getjButtonSeleccionArchivo().addActionListener(list);        
+        this.getCargarContactos().addActionListener(list);
+        this.getSeleccionArchivo().addActionListener(list);        
     }
     
     public JButton getCerrarSesion(){
@@ -101,8 +101,8 @@ public class interfazVentana extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldArchivoVCF = new javax.swing.JTextField();
-        jButtonSeleccionArchivo = new javax.swing.JButton();
-        jButtonCargarContactos = new javax.swing.JButton();
+        SeleccionArchivo = new javax.swing.JButton();
+        CargarContactos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,11 +138,9 @@ public class interfazVentana extends javax.swing.JFrame {
 
         jLabel2.setText("Archivo VCF:");
 
-        jTextFieldArchivoVCF.setText("Ingrese Archivo ");
+        SeleccionArchivo.setText("...");
 
-        jButtonSeleccionArchivo.setText("...");
-
-        jButtonCargarContactos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CargarContacto.png"))); // NOI18N
+        CargarContactos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CargarContacto.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,9 +151,9 @@ public class interfazVentana extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldArchivoVCF, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSeleccionArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SeleccionArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonCargarContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CargarContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -163,13 +161,13 @@ public class interfazVentana extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSeleccionArchivo)
+                    .addComponent(SeleccionArchivo)
                     .addComponent(jTextFieldArchivoVCF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonCargarContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(CargarContactos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,12 +263,12 @@ public class interfazVentana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CargarContactos;
+    private javax.swing.JButton SeleccionArchivo;
     private javax.swing.JButton agregarContacto;
     private javax.swing.JButton cerrarSesion;
     private javax.swing.JButton editContacto;
     private javax.swing.JButton elimContacto;
-    private javax.swing.JButton jButtonCargarContactos;
-    private javax.swing.JButton jButtonSeleccionArchivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -283,15 +281,15 @@ public class interfazVentana extends javax.swing.JFrame {
     /**
      * @return the jButtonCargarContactos
      */
-    public javax.swing.JButton getjButtonCargarContactos() {
-        return jButtonCargarContactos;
+    public javax.swing.JButton getCargarContactos() {
+        return CargarContactos;
     }
 
     /**
      * @return the jButtonSeleccionArchivo
      */
-    public javax.swing.JButton getjButtonSeleccionArchivo() {
-        return jButtonSeleccionArchivo;
+    public javax.swing.JButton getSeleccionArchivo() {
+        return SeleccionArchivo;
     }
 
     /**
