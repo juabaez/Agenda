@@ -169,9 +169,8 @@ public class ControladorVentana implements ActionListener{
             //Mostrar el nombre del archvivo en un campo de texto
             String direccion = archivoElegido.getPath().replace(archivoElegido.getName(), "");
             String archivo = archivoElegido.getName();
-            System.out.println("Dir "+direccion);
-            System.out.println("Dir "+archivo);
-            if (!archivo.contains(".vcf")||!archivo.contains(".VCF")) {
+            if (!archivo.contains(".vcf")&& !archivo.contains(".VCF")) {
+                interfazVen.getjTextFieldArchivoVCF().setText("");
                 JOptionPane.showMessageDialog(null, "Extencion invalida (.VCF)", "Error ", JOptionPane.ERROR_MESSAGE);
             }else{
                 interfazVen.getjTextFieldArchivoVCF().setText(direccion+archivo);
