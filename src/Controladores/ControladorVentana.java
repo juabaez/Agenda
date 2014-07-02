@@ -10,6 +10,7 @@ import Agenda.Contacto;
 import Interfaces.interfazEditarContacto;
 import Interfaces.interfazLogin;
 import Interfaces.interfazVentana;
+import static Persistencias.PersistenciaContacto.InsertarContacto;
 import static Persistencias.PersistenciaContacto.contacto;
 import static Persistencias.PersistenciaContacto.idContacto;
 import java.awt.event.ActionEvent;
@@ -134,7 +135,29 @@ public class ControladorVentana implements ActionListener{
         if (ae.getSource()==interfazVen.getSeleccionArchivo()) {
             seleccionArchivo();
         }
+        
+        //cargar los contactos del archivo VCF a la base de datos
+        if (ae.getSource()==interfazVen.getCargarContactos()) {
+            if (interfazVen.getjTextFieldArchivoVCF().getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe cargar un archivo ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
+            }else{
+                LinkedList<Contacto> contacto = tratamientoDeArchivo(interfazVen.getjTextFieldArchivoVCF().getText());
+                //armar la lista con todos los contactos leidos del archivo VCF
+                int i = 0;
+                while (!contacto.isEmpty()) {
+                    try {
+                        InsertarContacto(contacto.get(i).getNombre(),contacto.get(i).getApellido(),contacto.get(i).getTelefono(),contacto.get(i).getDireccion(),user);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
     }
+    
+    //metodo que actializa la lista de contactos 
     public void actualizarLista() throws IOException{
         try {
             LinkedList<Contacto> users = contacto(user);
@@ -176,8 +199,12 @@ public class ControladorVentana implements ActionListener{
                 interfazVen.getjTextFieldArchivoVCF().setText(direccion+archivo);
             }   
         }
-    }    
-    //--------------------------------------------------------------------------
+    }//--------------------------------------------------------------------------
     
+    /*aca va el metodo que carga una lista de contactos con los contactos del archivo VCF*/
+    public static LinkedList tratamientoDeArchivo(String dirArchivo){
+        LinkedList<Contacto> contacto = new LinkedList();
+        return contacto;
+    }
     
 }
