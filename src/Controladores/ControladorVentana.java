@@ -15,7 +15,10 @@ import static Persistencias.PersistenciaContacto.contacto;
 import static Persistencias.PersistenciaContacto.idContacto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -141,17 +144,21 @@ public class ControladorVentana implements ActionListener{
             if (interfazVen.getjTextFieldArchivoVCF().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Debe cargar un archivo ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
             }else{
-                LinkedList<Contacto> contacto = tratamientoDeArchivo(interfazVen.getjTextFieldArchivoVCF().getText());
-                //armar la lista con todos los contactos leidos del archivo VCF
-                int i = 0;
-                while (!contacto.isEmpty()) {
-                    try {
-                        InsertarContacto(contacto.get(i).getNombre(),contacto.get(i).getApellido(),contacto.get(i).getTelefono(),contacto.get(i).getDireccion(),user);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    LinkedList<Contacto> contacto = tratamientoDeArchivo(interfazVen.getjTextFieldArchivoVCF().getText());
+                    //armar la lista con todos los contactos leidos del archivo VCF
+                    int i = 0;
+                    while (!contacto.isEmpty()) {
+                        try {
+                            InsertarContacto(contacto.get(i).getNombre(),contacto.get(i).getApellido(),contacto.get(i).getTelefono(),contacto.get(i).getDireccion(),user);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
+                            Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -202,8 +209,21 @@ public class ControladorVentana implements ActionListener{
     }//--------------------------------------------------------------------------
     
     /*aca va el metodo que carga una lista de contactos con los contactos del archivo VCF*/
-    public static LinkedList tratamientoDeArchivo(String dirArchivo){
+    public static LinkedList tratamientoDeArchivo(String dirArchivo) throws FileNotFoundException, IOException{
         LinkedList<Contacto> contacto = new LinkedList();
+        FileReader fr = new FileReader(dirArchivo);
+        BufferedReader bf = new BufferedReader(fr);
+        String sCadena;
+        while ((sCadena = bf.readLine())!=null) {
+            if(sCadena.contains("BEGIN")){
+                sCadena=bf.readLine();
+                if(sCadena.contains("N:")){
+                    sCadena = sCadena.substring(2, sCadena.length()-4);
+                    String aux[] = sCadena.split(";");
+                    
+                }
+            }
+        }
         return contacto;
     }
     
