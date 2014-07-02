@@ -200,8 +200,7 @@ public class ControladorVentana implements ActionListener{
     }//--------------------------------------------------------------------------
     
     /*aca va el metodo que carga una lista de contactos con los contactos del archivo VCF*/
-    public static LinkedList tratamientoDeArchivo(String dirArchivo) throws FileNotFoundException, IOException, SQLException{
-        LinkedList<Contacto> contacto = new LinkedList();
+    public static void tratamientoDeArchivo(String dirArchivo) throws FileNotFoundException, IOException, SQLException{
         FileReader fr = new FileReader(dirArchivo);
         BufferedReader bf = new BufferedReader(fr);
         String sCadena;
@@ -210,7 +209,6 @@ public class ControladorVentana implements ActionListener{
         sCadena = bf.readLine();
         Contacto auxContacto = new Contacto();;
         while ((sCadena = bf.readLine())!=null) { 
-            
             if(sCadena.contains("BEGIN:")){ 
                 sCadena = bf.readLine();
                 sCadena = bf.readLine();
@@ -230,12 +228,13 @@ public class ControladorVentana implements ActionListener{
                             auxContacto.setDireccion(sCadena);
                             sCadena = bf.readLine();
                             if(sCadena.contains("END:")){
-                                contacto.add(auxContacto);
+                                InsertarContacto(auxContacto.getNombre(),auxContacto.getApellido(),auxContacto.getTelefono(),auxContacto.getDireccion(),user);
                             }
                         }else{
+                            auxContacto.setDireccion("");
                             if(sCadena.contains("END:")){
                                 InsertarContacto(auxContacto.getNombre(),auxContacto.getApellido(),auxContacto.getTelefono(),auxContacto.getDireccion(),user);
-                                //contacto.add(auxContacto);
+                                
                             }
                         }
                     }    
@@ -246,7 +245,6 @@ public class ControladorVentana implements ActionListener{
                 }   
             }      
         }
-        return contacto;
     }
     
 }
