@@ -214,15 +214,45 @@ public class ControladorVentana implements ActionListener{
         FileReader fr = new FileReader(dirArchivo);
         BufferedReader bf = new BufferedReader(fr);
         String sCadena;
-        while ((sCadena = bf.readLine())!=null) {
-            if(sCadena.contains("BEGIN")){
-                sCadena=bf.readLine();
+        sCadena = bf.readLine();
+        sCadena = bf.readLine();
+        sCadena = bf.readLine();
+        while ((sCadena = bf.readLine())!=null) { 
+            Contacto auxContacto = null;
+            if(sCadena.contains("BEGIN:")){ 
+                auxContacto = new Contacto();
+                sCadena = bf.readLine();
+                sCadena = bf.readLine();
                 if(sCadena.contains("N:")){
-                    sCadena = sCadena.substring(2, sCadena.length()-4);
+                    sCadena = sCadena.substring(2, sCadena.length()-3);
                     String aux[] = sCadena.split(";");
-                    
-                }
-            }
+                    auxContacto.setApellido(aux[0]);
+                    auxContacto.setNombre(aux[1]);
+                    sCadena = bf.readLine();
+                    sCadena = bf.readLine();
+                    if(sCadena.contains("TEL;CELL:")){
+                        sCadena = sCadena.substring(9, sCadena.length());
+                        auxContacto.setTelefono(sCadena);
+                        sCadena = bf.readLine();
+                        if(sCadena.contains("EMAIL;HOME:")){
+                            sCadena = sCadena.substring(11, sCadena.length());
+                            auxContacto.setDireccion(sCadena);
+                            sCadena = bf.readLine();
+                            if(sCadena.contains("END:")){
+                                contacto.add(auxContacto);
+                            }
+                        }else{
+                            if(sCadena.contains("END:")){
+                                contacto.add(auxContacto);;
+                            }
+                        }
+                    }    
+                }else{
+                    sCadena = bf.readLine();
+                    sCadena = bf.readLine();
+                    sCadena = bf.readLine();
+                }   
+            }      
         }
         return contacto;
     }

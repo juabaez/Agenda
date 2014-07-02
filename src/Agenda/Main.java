@@ -7,9 +7,6 @@
 package Agenda;
 
 import Controladores.ControladorLogin;
-import static Persistencias.ConexionDB.Disconnect;
-import static Persistencias.ConexionDB.GetConnection;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -19,7 +16,7 @@ import java.sql.SQLException;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        ControladorLogin contr= new ControladorLogin();
+        ControladorLogin contr= new ControladorLogin();    
     }
-    
+        
 }
