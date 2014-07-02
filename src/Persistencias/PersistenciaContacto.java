@@ -62,7 +62,7 @@ public class PersistenciaContacto {
         Statement s = con.createStatement();
         //realizo la busqueda en la base de datos
         //Recorremos el resultado, mientras haya registros para leer
-        ResultSet rs = s.executeQuery ("select * from Contacto where nameUser='"+name+"'");
+        ResultSet rs = s.executeQuery ("select * from Contacto where nameUser='"+name+"' order by nombre");
         //mientras que exista registro para leer sigue el while sino sale
         while (rs.next()){ //CAMBIE ESTO TAMBIEN, no estaba bien lo que hacias, se iba de rango
             Contacto per = new Contacto();

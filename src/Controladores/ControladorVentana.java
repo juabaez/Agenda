@@ -146,6 +146,10 @@ public class ControladorVentana implements ActionListener{
             }else{
                 try {
                     tratamientoDeArchivo(interfazVen.getjTextFieldArchivoVCF().getText());
+                    interfazVen.getjTextFieldArchivoVCF().setText("");
+                    if(fueListado){
+                        this.actualizarLista();
+                    }
                 } catch (IOException ex) {
                     Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
