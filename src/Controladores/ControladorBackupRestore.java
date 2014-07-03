@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package BackupRestore;
+package Controladores;
 
+import Interfaces.interfazBackupRestore;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -93,10 +94,9 @@ public class ControladorBackupRestore implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==ventanaBackupRestore.getBotonCancelar()){ 
-            ventanaBackupRestore.setVisible(false);
-        }
-        if(e.getSource()==ventanaBackupRestore.getSeleccionBin()){//selecciona donde esta la carpeta del ejecutable 
+        
+        //selecciona donde esta la carpeta del ejecutable
+        if(e.getSource()==ventanaBackupRestore.getSeleccionBin()){ 
             String a = seleccionarCarpeta();
             if (a.matches("")) {
                 JOptionPane.showMessageDialog(null, "Seleccion nula de carpeta"+'\n'+"C:\\Program Files\\MySQL\\MySQL Server 5.5\\bin\\", "Seleccione Carpeta",JOptionPane.INFORMATION_MESSAGE);
@@ -104,6 +104,7 @@ public class ControladorBackupRestore implements ActionListener {
                 ventanaBackupRestore.getDireccionMysql().setText(a);
             }        
         }
+        
         if(e.getSource()==ventanaBackupRestore.getSeleccionArchivo()){
             if (ventanaBackupRestore.getRadioBackup().isSelected()) {
                 //Radio Butom verdadero en backup te deja seleccionar carpeta
@@ -123,6 +124,7 @@ public class ControladorBackupRestore implements ActionListener {
                 }
             }        
         }
+        
         if(e.getSource()==ventanaBackupRestore.getBotonEjecutar()){ 
             if (ventanaBackupRestore.getRadioBackup().isSelected()) {
                 if (ventanaBackupRestore.getDireccionArchivo().getText().matches("")) {

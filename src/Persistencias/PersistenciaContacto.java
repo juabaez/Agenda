@@ -112,4 +112,22 @@ public class PersistenciaContacto {
         Disconnect(con);
     }
     
+    public static LinkedList buscarContacto(String name,String user) throws IOException, SQLException{
+        LinkedList<Contacto> contacto = new LinkedList();
+        con = GetConnection();
+        Statement s = con.createStatement();
+        ResultSet rs = s.executeQuery("select * from contacto where (nombre like '%"+name+"%' or nombre like '%"+name+"' or nombre like '"+name+"%' or apellido like '%"+name+"%' or apellido like '%"+name+"' or apellido like '"+name+"%') and nameUser='"+user+"'");
+        while (rs.next()){
+            Contacto per = new Contacto();
+            //comparo si lo que esta en la base de datos 
+            per.setNombre((String)rs.getObject("nombre"));
+            per.setApellido((String) rs.getObject("apellido"));
+            per.setTelefono((String) rs.getObject("telefono"));
+            per.setDireccion((String) rs.getObject("direccion"));
+            contacto.add(per);
+        }
+        s.close();
+        con.close();
+        return contacto;
+    }
 }

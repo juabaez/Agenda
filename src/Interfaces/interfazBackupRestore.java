@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package BackupRestore;
+package Interfaces;
 
 import java.awt.event.ActionListener;
 
@@ -30,7 +30,6 @@ public class interfazBackupRestore extends javax.swing.JFrame {
     public void setActionLisntener(ActionListener list){
         this.getRadioBackup().addActionListener(list);
         this.getRadioRestore().addActionListener(list);
-        this.getBotonCancelar().addActionListener(list);
         this.getBotonEjecutar().addActionListener(list);
         this.getSeleccionArchivo().addActionListener(list);
         this.getSeleccionBin().addActionListener(list);
@@ -57,7 +56,6 @@ public class interfazBackupRestore extends javax.swing.JFrame {
         direccionArchivo = new javax.swing.JTextField();
         seleccionArchivo = new javax.swing.JButton();
         botonEjecutar = new javax.swing.JButton();
-        botonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -139,8 +137,6 @@ public class interfazBackupRestore extends javax.swing.JFrame {
 
         botonEjecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ejecutar.png"))); // NOI18N
 
-        botonCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,10 +146,9 @@ public class interfazBackupRestore extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -164,10 +159,8 @@ public class interfazBackupRestore extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonEjecutar)
-                    .addComponent(botonCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(botonEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,7 +204,6 @@ public class interfazBackupRestore extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton RadioBackup;
     private javax.swing.JRadioButton RadioRestore;
-    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonEjecutar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField direccionArchivo;
@@ -236,13 +228,6 @@ public class interfazBackupRestore extends javax.swing.JFrame {
      */
     public javax.swing.JRadioButton getRadioRestore() {
         return RadioRestore;
-    }
-
-    /**
-     * @return the botonCancelar
-     */
-    public javax.swing.JButton getBotonCancelar() {
-        return botonCancelar;
     }
 
     /**

@@ -7,11 +7,11 @@
 package Controladores;
 
 import Agenda.Contacto;
-import BackupRestore.ControladorBackupRestore;
 import Interfaces.interfazEditarContacto;
 import Interfaces.interfazLogin;
 import Interfaces.interfazVentana;
 import static Persistencias.PersistenciaContacto.InsertarContacto;
+import static Persistencias.PersistenciaContacto.buscarContacto;
 import static Persistencias.PersistenciaContacto.contacto;
 import static Persistencias.PersistenciaContacto.idContacto;
 import java.awt.event.ActionEvent;
@@ -68,16 +68,10 @@ public class ControladorVentana implements ActionListener{
         //me fijo si se preciono el boton listar contactos
         if (ae.getSource()==interfazVen.getListar()){
             try {
-                LinkedList<Contacto> users = contacto(user);
+                LinkedList<Contacto> contactos = contacto(user);
                 DefaultTableModel dt = interfazVen.getTabla();
                 dt.setRowCount(0);
-                Contacto per;
-                //voy agregando los contactos de un usuario a la tabla
-                while (!users.isEmpty()){
-                    per = users.getFirst();
-                    dt.addRow(new Object[]{per.getNombre(),per.getApellido(),per.getTelefono(),per.getDireccion(),new JRadioButton()});
-                    users.remove();
-                }
+                mostrarContacto(dt,contactos);
                 fueListado = true;
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
@@ -135,10 +129,12 @@ public class ControladorVentana implements ActionListener{
                 }
             }
         }
+        
         //Selecciono el Archivo VCF
         if (ae.getSource()==interfazVen.getSeleccionArchivo()) {
             seleccionArchivo();
         }
+        
         //Hacer backup y restaurar base de datos
         if (ae.getSource()==interfazVen.getBotonBackupyRestauracion()) {
             if (backupRestor==null) {
@@ -148,6 +144,7 @@ public class ControladorVentana implements ActionListener{
             }
             
         }
+        
         //cargar los contactos del archivo VCF a la base de datos
         if (ae.getSource()==interfazVen.getCargarContactos()) {
             if (interfazVen.getjTextFieldArchivoVCF().getText().isEmpty()) {
@@ -164,6 +161,21 @@ public class ControladorVentana implements ActionListener{
                 } catch (SQLException ex) {
                     Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            }
+        }
+        
+        //realiza las busqueda de los contactos por el atributo nombre o apellido
+        if (ae.getSource()==interfazVen.getBuscar()) {
+            try {
+                LinkedList<Contacto> contactos = buscarContacto(interfazVen.getCampoBuscado().getText(),user);
+                DefaultTableModel dt = interfazVen.getTabla();
+                dt.setRowCount(0);
+                mostrarContacto(dt,contactos);
+                interfazVen.getCampoBuscado().setText("");
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -260,4 +272,14 @@ public class ControladorVentana implements ActionListener{
         }
     }
     
+    public static void mostrarContacto(DefaultTableModel dt,LinkedList<Contacto> contacto){
+        Contacto per;
+        //voy agregando los contactos de un usuario a la tabla
+        while (!contacto.isEmpty()){
+            per = contacto.getFirst();
+            dt.addRow(new Object[]{per.getNombre(),per.getApellido(),per.getTelefono(),per.getDireccion(),new JRadioButton()});
+            contacto.remove();
+        }
+    }
+
 }
