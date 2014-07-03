@@ -47,6 +47,7 @@ public class interfazVentana extends javax.swing.JFrame {
         this.agregarContacto.addActionListener(list);
         this.editContacto.addActionListener(list);
         this.elimContacto.addActionListener(list);
+        this.getBotonBackupyRestauracion().addActionListener(list);
         this.getCargarContactos().addActionListener(list);
         this.getSeleccionArchivo().addActionListener(list);        
     }
@@ -103,6 +104,7 @@ public class interfazVentana extends javax.swing.JFrame {
         jTextFieldArchivoVCF = new javax.swing.JTextField();
         SeleccionArchivo = new javax.swing.JButton();
         CargarContactos = new javax.swing.JButton();
+        botonBackupyRestauracion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,6 +172,8 @@ public class interfazVentana extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        botonBackupyRestauracion.setText("Backup y Restauracion");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,7 +184,9 @@ public class interfazVentana extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonBackupyRestauracion, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,7 +224,9 @@ public class interfazVentana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 34, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonBackupyRestauracion)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -269,6 +277,7 @@ public class interfazVentana extends javax.swing.JFrame {
     private javax.swing.JButton CargarContactos;
     private javax.swing.JButton SeleccionArchivo;
     private javax.swing.JButton agregarContacto;
+    private javax.swing.JButton botonBackupyRestauracion;
     private javax.swing.JButton cerrarSesion;
     private javax.swing.JButton editContacto;
     private javax.swing.JButton elimContacto;
@@ -300,5 +309,12 @@ public class interfazVentana extends javax.swing.JFrame {
      */
     public javax.swing.JTextField getjTextFieldArchivoVCF() {
         return jTextFieldArchivoVCF;
+    }
+
+    /**
+     * @return the botonBackupyRestauracion
+     */
+    public javax.swing.JButton getBotonBackupyRestauracion() {
+        return botonBackupyRestauracion;
     }
 }

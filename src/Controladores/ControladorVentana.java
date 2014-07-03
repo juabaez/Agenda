@@ -7,6 +7,7 @@
 package Controladores;
 
 import Agenda.Contacto;
+import BackupRestore.ControladorBackupRestore;
 import Interfaces.interfazEditarContacto;
 import Interfaces.interfazLogin;
 import Interfaces.interfazVentana;
@@ -36,7 +37,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Juan
  */
 public class ControladorVentana implements ActionListener{
-    
+    private ControladorBackupRestore backupRestor;
     private interfazVentana interfazVen;
     private interfazEditarContacto interfazCon;
     private interfazLogin interfazLogin;
@@ -138,7 +139,15 @@ public class ControladorVentana implements ActionListener{
         if (ae.getSource()==interfazVen.getSeleccionArchivo()) {
             seleccionArchivo();
         }
-        
+        //Hacer backup y restaurar base de datos
+        if (ae.getSource()==interfazVen.getBotonBackupyRestauracion()) {
+            if (backupRestor==null) {
+                backupRestor = new ControladorBackupRestore();
+            } else {
+                backupRestor.visible(true);
+            }
+            
+        }
         //cargar los contactos del archivo VCF a la base de datos
         if (ae.getSource()==interfazVen.getCargarContactos()) {
             if (interfazVen.getjTextFieldArchivoVCF().getText().isEmpty()) {
