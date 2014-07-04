@@ -91,6 +91,21 @@ public class ControladorBackupRestore implements ActionListener {
             }
  
     }
+    
+    //Este prodecedimiento es el encargado de ejecutar un proceso en consola y crear un archivo .sql
+    public void execRestaurar(String user, String pass, String bDd, String dirBin, String dirArchivo){         
+            try{         
+                Runtime runtime = Runtime.getRuntime();
+                String comando = '"'+dirBin+"\\mysql.exe"+'"'+" "+"-u"+user+" "+"-p"+pass+" "+bDd+" "+"<"+" "+dirArchivo;
+                Process child = runtime.exec(comando); 
+                //Process es el que ejecuta el comando para buscar el mysql.exe
+                JOptionPane.showMessageDialog(null, "Archivo generado", "Verificar",JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Error no se genero el archivo por el siguiente motivo: " + e.getMessage(), "Verificar",JOptionPane.ERROR_MESSAGE);
+            }
+ 
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -139,7 +154,10 @@ public class ControladorBackupRestore implements ActionListener {
                 if (ventanaBackupRestore.getDireccionArchivo().getText().matches("")) {
                     JOptionPane.showMessageDialog(null, "Seleccion un archivo .SQL ", "Seleccione nula",JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Accion todavia no desarrollada ", "Error",JOptionPane.ERROR_MESSAGE);
+                    /*String dirbin = ventanaBackupRestore.getDireccionMysql().getText();
+                    String fecha = DateToString(Date.valueOf(LocalDate.now()));
+                    String dirarch = ventanaBackupRestore.getDireccionArchivo().getText();
+                    execRestaurar(this.usuarioDB,this.passwordDB,this.baseDatos,dirbin,dirarch);*/
                 }
             }        
         }
