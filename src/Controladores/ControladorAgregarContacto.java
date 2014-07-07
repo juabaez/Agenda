@@ -48,7 +48,7 @@ public class ControladorAgregarContacto implements ActionListener{
                         if(ven.fueListado){
                             PersistenciaContacto.InsertarContacto(this.interfaz.getNombre().getText(),this.interfaz.getApellido().getText(),this.interfaz.getTelefono().getText(),this.interfaz.getDireccion().getText(),user);
                             JOptionPane.showMessageDialog(null, "Felicitaciones se guardo el contacto correctamente");
-                            ven.actualizarLista();
+                            ven.actualizarListaContacto();
                         }else{
                             PersistenciaContacto.InsertarContacto(this.interfaz.getNombre().getText(),this.interfaz.getApellido().getText(),this.interfaz.getTelefono().getText(),this.interfaz.getDireccion().getText(),user);
                             JOptionPane.showMessageDialog(null, "Felicitaciones se guardo el contacto correctamente");

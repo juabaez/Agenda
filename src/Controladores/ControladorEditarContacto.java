@@ -61,7 +61,7 @@ public class ControladorEditarContacto implements ActionListener{
                     //llamo a la funcion que edita un contacto
                     PersistenciaContacto.editarContacto(name,apellido,telefono,direccion,id);
                     JOptionPane.showMessageDialog(null, "Felicitaciones se actualizo el contacto correctamente");
-                    ven.actualizarLista();
+                    ven.actualizarListaContacto();
                     interfaz.setVisible(false);
                 }else{
                     JOptionPane.showMessageDialog(null, "Error: No se pudo actualizar el contacto asegurese que no haya campos vacios");

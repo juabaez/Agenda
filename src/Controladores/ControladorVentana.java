@@ -68,13 +68,8 @@ public class ControladorVentana implements ActionListener{
         //me fijo si se preciono el boton listar contactos
         if (ae.getSource()==interfazVen.getListar()){
             try {
-                LinkedList<Contacto> contactos = contacto(user);
-                DefaultTableModel dt = interfazVen.getTabla();
-                dt.setRowCount(0);
-                mostrarContacto(dt,contactos);
+                this.actualizarListaContacto();
                 fueListado = true;
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -154,7 +149,7 @@ public class ControladorVentana implements ActionListener{
                     tratamientoDeArchivo(interfazVen.getjTextFieldArchivoVCF().getText());
                     interfazVen.getjTextFieldArchivoVCF().setText("");
                     if(fueListado){
-                        this.actualizarLista();
+                        this.actualizarListaContacto();
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
@@ -170,7 +165,7 @@ public class ControladorVentana implements ActionListener{
                 LinkedList<Contacto> contactos = buscarContacto(interfazVen.getCampoBuscado().getText(),user);
                 DefaultTableModel dt = interfazVen.getTabla();
                 dt.setRowCount(0);
-                mostrarContacto(dt,contactos);
+                mostrarContactoBuscado(dt,contactos);
                 interfazVen.getCampoBuscado().setText("");
             } catch (IOException ex) {
                 Logger.getLogger(ControladorVentana.class.getName()).log(Level.SEVERE, null, ex);
@@ -181,7 +176,7 @@ public class ControladorVentana implements ActionListener{
     }
     
     //metodo que actializa la lista de contactos 
-    public void actualizarLista() throws IOException{
+    public void actualizarListaContacto() throws IOException{
         try {
             LinkedList<Contacto> users = contacto(user);
             DefaultTableModel dt = interfazVen.getTabla();
@@ -272,7 +267,7 @@ public class ControladorVentana implements ActionListener{
         }
     }
     
-    public static void mostrarContacto(DefaultTableModel dt,LinkedList<Contacto> contacto){
+    public static void mostrarContactoBuscado(DefaultTableModel dt,LinkedList<Contacto> contacto){
         Contacto per;
         //voy agregando los contactos de un usuario a la tabla
         while (!contacto.isEmpty()){

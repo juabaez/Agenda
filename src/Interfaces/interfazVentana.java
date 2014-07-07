@@ -29,11 +29,13 @@ public class interfazVentana extends javax.swing.JFrame {
     
     DefaultTableModel dt = new DefaultTableModel();
     
+    
     //aca agrego las columnas que se van a mostrar en la tabla
     public interfazVentana() {
         initComponents();
         this.jTextFieldArchivoVCF.setEditable(false);
         table1.setModel(dt);
+        table1.setAutoCreateRowSorter(true);
         dt.addColumn("Nombre");
         dt.addColumn("Apellido");
         dt.addColumn("Telefono");

@@ -51,7 +51,7 @@ public class ControladorElimContacto implements ActionListener{
                 //llamo al metodo que elimina un contacto
                 PersistenciaContacto.eliminarContacto(id);
                 JOptionPane.showMessageDialog(null, "Felicitaciones se elimino el contacto correctamente");
-                ven.actualizarLista();
+                ven.actualizarListaContacto();
                 interfaz.setVisible(false);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorElimContacto.class.getName()).log(Level.SEVERE, null, ex);
