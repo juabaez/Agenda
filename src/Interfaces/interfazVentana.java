@@ -7,6 +7,7 @@
 package Interfaces;
 import java.awt.Component;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -52,6 +53,10 @@ public class interfazVentana extends javax.swing.JFrame {
         this.getCargarContactos().addActionListener(list);
         this.getSeleccionArchivo().addActionListener(list);  
         this.buscar.addActionListener(list);
+    }
+    
+    public void setKeyListener(KeyListener lis){
+        this.campoBuscado.addKeyListener(lis);  
     }
     
     public JButton getCerrarSesion(){

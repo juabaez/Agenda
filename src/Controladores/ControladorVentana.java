@@ -16,6 +16,8 @@ import static Persistencias.PersistenciaContacto.contacto;
 import static Persistencias.PersistenciaContacto.idContacto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,12 +33,15 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Juan
  */
-public class ControladorVentana implements ActionListener{
+public class ControladorVentana implements ActionListener, KeyListener{
     private ControladorBackupRestore backupRestor;
     private interfazVentana interfazVen;
     private interfazEditarContacto interfazCon;
@@ -48,6 +53,7 @@ public class ControladorVentana implements ActionListener{
         this.user = user;
         interfazVen = new interfazVentana(); // creo la instanacia de la ventana
         interfazVen.setActionLisntener(this); // le digo que los botones de la ventana interfaz(los botones dentro del metodo)
+        interfazVen.setKeyListener(this);
         //los va a controlar este controlador, varios controladores pueden controlar un mismo elemento
         interfazVen.setLocationRelativeTo(null);
         interfazVen.setVisible(true);
@@ -280,6 +286,28 @@ public class ControladorVentana implements ActionListener{
             dt.addRow(new Object[]{per.getNombre(),per.getApellido(),per.getTelefono(),per.getDireccion(),new JRadioButton()});
             contacto.remove();
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        char caracter = e.getKeyChar();
+        if((caracter == 'A') || (caracter < 'C')){
+            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(interfazVen.getTabla());
+            if (interfazVen.getCampoBuscado().getText()!=null) {
+                System.out.println("entre");    
+            //Insensible a mayúsculas y minúsculas
+            sorter.setRowFilter(RowFilter.regexFilter("(?i).*" +interfazVen.getCampoBuscado().getText()+ ".*"));
+            interfazVen.getTable1().setRowSorter(sorter);
+            }
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 
 }
