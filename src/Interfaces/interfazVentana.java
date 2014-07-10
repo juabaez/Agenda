@@ -36,7 +36,6 @@ public class interfazVentana extends javax.swing.JFrame {
         initComponents();
         this.jTextFieldArchivoVCF.setEditable(false);
         table1.setModel(dt);
-        table1.setAutoCreateRowSorter(true);
         table1.setAutoCreateRowSorter(true);// orden por los campo de la tabla!
         dt.addColumn("Nombre");
         dt.addColumn("Apellido");

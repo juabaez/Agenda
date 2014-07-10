@@ -288,11 +288,10 @@ public class ControladorVentana implements ActionListener, KeyListener{
         char caracter = e.getKeyChar();
         if(true){
             TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(interfazVen.getTabla());
-            if (interfazVen.getCampoBuscado().getText()!=null) {
-                System.out.println("entre");    
-            //Insensible a mayúsculas y minúsculas
-            sorter.setRowFilter(RowFilter.regexFilter("(?i).*" +interfazVen.getCampoBuscado().getText()+ ".*"));
-            interfazVen.getTable1().setRowSorter(sorter);
+            if (interfazVen.getCampoBuscado().getText()!= null) {    
+                //Insensible a mayúsculas y minúsculas
+                sorter.setRowFilter(RowFilter.regexFilter("(?i).*" +interfazVen.getCampoBuscado().getText()+ ".*"));
+                interfazVen.getTable1().setRowSorter(sorter);
             }
         }
     }
