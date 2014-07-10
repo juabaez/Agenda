@@ -286,11 +286,11 @@ public class ControladorVentana implements ActionListener, KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {
         char caracter = e.getKeyChar();
-        if(true){
+        if(true){  
             TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(interfazVen.getTabla());
             if (interfazVen.getCampoBuscado().getText()!= null) {    
                 //Insensible a mayúsculas y minúsculas
-                sorter.setRowFilter(RowFilter.regexFilter("(?i).*" +interfazVen.getCampoBuscado().getText()+ ".*"));
+                sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+interfazVen.getCampoBuscado().getText()));
                 interfazVen.getTable1().setRowSorter(sorter);
             }
         }
