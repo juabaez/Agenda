@@ -286,7 +286,7 @@ public class ControladorVentana implements ActionListener, KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {
         char caracter = e.getKeyChar();
-        if((caracter == 'A') || (caracter < 'C')){
+        if(true){
             TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(interfazVen.getTabla());
             if (interfazVen.getCampoBuscado().getText()!=null) {
                 System.out.println("entre");    
