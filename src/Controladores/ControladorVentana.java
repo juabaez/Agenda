@@ -285,15 +285,28 @@ public class ControladorVentana implements ActionListener, KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        char caracter = e.getKeyChar();
+        
         if(true){  
             TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(interfazVen.getTabla());
-            if (interfazVen.getCampoBuscado().getText()!= null) {    
+            if (interfazVen.getCampoBuscado().getText().matches("")) {    
                 //Insensible a mayúsculas y minúsculas
-                sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+interfazVen.getCampoBuscado().getText()));
-                interfazVen.getTable1().setRowSorter(sorter);
-            }
-        }
+                if ((e.getKeyChar()>='a'&&e.getKeyChar()<='z')||(e.getKeyChar()>='A'&&e.getKeyChar()<='Z')||(e.getKeyChar()>='0'&&e.getKeyChar()<='9')) {
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+e.getKeyChar()));
+                    interfazVen.getTable1().setRowSorter(sorter);
+                }else{
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+""));
+                    interfazVen.getTable1().setRowSorter(sorter);
+                }
+            }else{
+                if ((e.getKeyChar()>='a'&&e.getKeyChar()<='z')||(e.getKeyChar()>='A'&&e.getKeyChar()<='Z')||(e.getKeyChar()>='0'&&e.getKeyChar()<='9')) {
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+interfazVen.getCampoBuscado().getText()+e.getKeyChar()));
+                    interfazVen.getTable1().setRowSorter(sorter);
+                }else{
+                    sorter.setRowFilter(RowFilter.regexFilter("(?i)^"+interfazVen.getCampoBuscado().getText()));
+                    interfazVen.getTable1().setRowSorter(sorter);
+                }
+            } 
+        }  
     }
 
     @Override
