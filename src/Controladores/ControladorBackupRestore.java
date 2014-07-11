@@ -32,6 +32,7 @@ public class ControladorBackupRestore implements ActionListener {
     private String baseDatos = "";
     private String usuarioDB = "";
     private String passwordDB = "";
+    private boolean banderaRB = false; 
     
     public ControladorBackupRestore(){
         configuracionBDD(); //Cargo configuracion de base de dato como usuario pass y base de dato
@@ -139,7 +140,18 @@ public class ControladorBackupRestore implements ActionListener {
                 }
             }        
         }
-        
+        if (ventanaBackupRestore.getRadioBackup().isSelected()){
+            if(banderaRB){
+                ventanaBackupRestore.getDireccionArchivo().setText("");
+                banderaRB = false;
+            }
+        }
+        if (ventanaBackupRestore.getRadioRestore().isSelected()){
+            if(!banderaRB){
+                ventanaBackupRestore.getDireccionArchivo().setText("");
+                banderaRB = true;
+            }
+        }
         if(e.getSource()==ventanaBackupRestore.getBotonEjecutar()){ 
             if (ventanaBackupRestore.getRadioBackup().isSelected()) {
                 if (ventanaBackupRestore.getDireccionArchivo().getText().matches("")) {
