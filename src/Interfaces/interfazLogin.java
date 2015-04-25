@@ -22,6 +22,7 @@ public class interfazLogin extends javax.swing.JFrame {
      * Creates new form interfazLogin
      */
     public interfazLogin() {
+        
         initComponents();
     }
     
